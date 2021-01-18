@@ -1,0 +1,19 @@
+{
+  "name": "sqkb-bd-ui",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "author": "sqkb",
+  "homepage": "https://github.com/element-plus/element-plus#readme",
+  "license": "GPL",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/element-plus/element-plus.git"
+  },
+  "bugs": {
+    "url": "https://github.com/element-plus/element-plus/issues"
+  },
+  "dependencies": {
+    "@sqkb-bd-ui/hello": "^0.0.0"
+  }
+}
