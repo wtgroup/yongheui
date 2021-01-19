@@ -2,7 +2,7 @@ import { defineAsyncComponent } from 'vue'
 import langs from './i18n/route'
 import navConfig from './nav.config'
 import { Language } from './enums/language'
-//
+
 // const LoadingComponent = {
 //   template: `<div v-loading="true" style="min-height: 500px; width: 100%;"></div>`,
 // }
@@ -10,109 +10,136 @@ import { Language } from './enums/language'
 //   template: `
 //     <div style="text-align: center;padding: 100px 0;">Loading error. Please refresh the page and try again</div>`,
 // }
-// const getAsyncComponent = func => {
-//   return defineAsyncComponent({
-//     loader: func,
-//     delay: 0,
-//     timeout: 30000,
-//     errorComponent: ErrorComponent,
-//     loadingComponent: LoadingComponent,
-//   })
-// }
-//
-// const LOAD_MAP = {
-//   [Language.CN]: name => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "zh-CN" */ `./pages/${name}.vue`))
-//   },
-//   [Language.EN]: name => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "en-US" */ `./pages/${name}.vue`))
-//   },
-//   [Language.ES]: name => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "es" */ `./pages/${name}.vue`))
-//   },
-//   [Language.FR]: name => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "fr-FR" */ `./pages/${name}.vue`))
-//   },
-//   [Language.JP]: name => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "jp" */ `./pages/${name}.vue`))
-//   },
-// }
-//
-// const load = function(lang, path) {
-//   return LOAD_MAP[lang](path)
-// }
-//
-// const LOAD_DOCS_MAP = {
-//   [Language.CN]: path => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "DOCS zh-CN" */ `./docs/zh-CN${path}.md`))
-//   },
-//   [Language.EN]: path => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "DOCS en-US" */ `./docs/en-US${path}.md`))
-//   },
-//   [Language.ES]: path => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "DOCS es" */ `./docs/es${path}.md`))
-//   },
-//   [Language.FR]: path => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/fr-FR${path}.md`))
-//   },
-//   [Language.JP]: path => {
-//     return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/jp${path}.md`))
-//   },
-// }
-//
-// const loadDocs = function(lang, path) {
-//   return LOAD_DOCS_MAP[lang](path)
-// }
-//
-// const registerRoute = navConfig => {
-//   let route = []
-//   Object.keys(navConfig).forEach((lang, index) => {
-//     let navs = navConfig[lang]
-//     route.push({
-//       path: `/${ lang }/component`,
-//       redirect: `/${ lang }/component/installation`,
-//       component: load(lang, 'component'),
-//       children: [],
-//     })
-//     navs.forEach(nav => {
-//       if (nav.href) return
-//       if (nav.groups) {
-//         nav.groups.forEach(group => {
-//           group.list.forEach(nav => {
-//             addRoute(nav, lang, index)
-//           })
-//         })
-//       } else if (nav.children) {
-//         nav.children.forEach(nav => {
-//           addRoute(nav, lang, index)
-//         })
-//       } else {
-//         addRoute(nav, lang, index)
-//       }
-//     })
-//   })
-//   function addRoute(page, lang, index) {
-//     const component = page.path === '/changelog'
-//       ? load(lang, 'changelog')
-//       : loadDocs(lang, page.path)
-//     let child = {
-//       path: page.path.slice(1),
-//       meta: {
-//         title: page.title || page.name,
-//         description: page.description,
-//         lang,
-//       },
-//       name: 'component-' + lang + (page.title || page.name),
-//       component: component.default || component,
-//     }
-//
-//     route[index].children.push(child)
-//   }
-//   return route
-// }
 
-// let route = registerRoute(navConfig)
-let route = []
+/**
+ * Get 异步组件
+ * @param func import
+ * @returns {{new(): ComponentPublicInstance}}
+ */
+const getAsyncComponent = func => {
+  return defineAsyncComponent({
+    loader: func,
+    delay: 0,
+    timeout: 30000,
+    // errorComponent: ErrorComponent,
+    // loadingComponent: LoadingComponent,
+  })
+}
+
+/**
+ * 路径 page 映射
+ * @type {{"[Language.CN]": (function(*): {new(): ComponentPublicInstance})}}
+ */
+const LOAD_MAP = {
+  [Language.CN]: name => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "zh-CN" */ `./pages/${name}.vue`))
+  },
+  [Language.EN]: name => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "en-US" */ `./pages/${name}.vue`))
+  },
+  [Language.ES]: name => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "es" */ `./pages/${name}.vue`))
+  },
+  [Language.FR]: name => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "fr-FR" */ `./pages/${name}.vue`))
+  },
+  [Language.JP]: name => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "jp" */ `./pages/${name}.vue`))
+  },
+}
+
+const load = function(lang, path) {
+  return LOAD_MAP[lang](path)
+}
+
+/**
+ * 路径 和 Doc 组件映射
+ * @type {{"[Language.CN]": (function(*): *)}}
+ */
+const LOAD_DOCS_MAP = {
+  [Language.CN]: path => {
+    return getAsyncComponent(() => import(/* webpackChunkName: "DOCS zh-CN" */ `./docs/zh-CN${path}.md`))
+  },
+  // [Language.EN]: path => {
+  //   return getAsyncComponent(() => import(/* webpackChunkName: "DOCS en-US" */ `./docs/en-US${path}.md`))
+  // },
+  // [Language.ES]: path => {
+  //   return getAsyncComponent(() => import(/* webpackChunkName: "DOCS es" */ `./docs/es${path}.md`))
+  // },
+  // [Language.FR]: path => {
+  //   return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/fr-FR${path}.md`))
+  // },
+  // [Language.JP]: path => {
+  //   return getAsyncComponent(() => import(/* webpackChunkName: "DOCS fr-FR" */ `./docs/jp${path}.md`))
+  // },
+}
+
+/**
+ * 路径 -> Doc
+ * @param lang
+ * @param path
+ * @returns {*}
+ */
+const loadDocs = function(lang, path) {
+  return LOAD_DOCS_MAP[lang](path)
+}
+
+/**
+ * 注册路由
+ *
+ * component
+ * @param navConfig
+ * @returns {[]}
+ */
+const registerRoute = navConfig => {
+  let route = []
+  Object.keys(navConfig).forEach((lang, index) => {
+    let navs = navConfig[lang]
+    // root route
+    route.push({
+      path: `/${ lang }/component`,
+      redirect: `/${ lang }/component/installation`,
+      component: load(lang, 'component'),
+      children: [],
+    })
+    navs.forEach(nav => {
+      if (nav.href) return
+      if (nav.groups) {
+        nav.groups.forEach(group => {
+          group.list.forEach(nav => {
+            addRoute(nav, lang, index)
+          })
+        })
+      } else if (nav.children) {
+        nav.children.forEach(nav => {
+          addRoute(nav, lang, index)
+        })
+      } else {
+        addRoute(nav, lang, index)
+      }
+    })
+  })
+  function addRoute(page, lang, index) {
+    const component = page.path === '/changelog'
+      ? load(lang, 'changelog')
+      : loadDocs(lang, page.path)
+    let child = {
+      path: page.path.slice(1),
+      meta: {
+        title: page.title || page.name,
+        description: page.description,
+        lang,
+      },
+      name: 'component-' + lang + (page.title || page.name),
+      component: component.default || component,
+    }
+
+    route[index].children.push(child)
+  }
+  return route
+}
+
+let route = registerRoute(navConfig)
 
 const generateMiscRoutes = function(lang) {
   let guideRoute = {
@@ -164,6 +191,9 @@ if (userLanguage.indexOf('zh-') !== -1) {
 } else if (userLanguage.indexOf('jp') !== -1) {
   defaultPath = Language.JP
 }
+
+// todo
+defaultPath += '/component' // 直接跳到组件列表页
 
 route = route.concat([{
   path: '/',

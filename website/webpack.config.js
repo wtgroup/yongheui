@@ -33,22 +33,22 @@ const config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
-      // {
-      //   test: /\.md$/,
-      //   use: [
-      //     {
-      //       loader: 'vue-loader',
-      //       options: {
-      //         compilerOptions: {
-      //           preserveWhitespace: false,
-      //         },
-      //       },
-      //     },
-      //     {
-      //       loader: path.resolve(__dirname, './md-loader/index.js'), // df: 就是一方法
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              compilerOptions: {
+                preserveWhitespace: false,
+              },
+            },
+          },
+          {
+            loader: path.resolve(__dirname, './md-loader/index.js'), // df: 就是一方法
+          },
+        ],
+      },
       {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'url-loader',

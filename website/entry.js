@@ -2,10 +2,10 @@ import { createApp, nextTick } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './route.config'
 import demoBlock from './components/demo-block'
-import MainFooter from './components/footer'
-import MainHeader from './components/header'
+// import MainFooter from './components/footer'
+// import MainHeader from './components/header'
 import SideNav from './components/side-nav'
-import FooterNav from './components/footer-nav'
+// import FooterNav from './components/footer-nav'
 import title from './i18n/title'
 import 'highlight.js/styles/color-brewer.css'
 import './demo-styles/index.scss'
@@ -28,10 +28,10 @@ const app = createApp(App)
 app.config.globalProperties.$icon = icon
 
 app.component('DemoBlock', demoBlock)
-app.component('MainFooter', MainFooter)
-app.component('MainHeader', MainHeader)
+// app.component('MainFooter', MainFooter)
+// app.component('MainHeader', MainHeader)
 app.component('SideNav', SideNav)
-app.component('FooterNav', FooterNav)
+// app.component('FooterNav', FooterNav)
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -51,7 +51,7 @@ router.isReady().then(() => {
         return
       }
     }
-    document.title = 'Element'
+    document.title = 'SQKB-BD-UI'
     ga('send', 'event', 'PageView', route.name)
   })
 
