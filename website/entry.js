@@ -9,18 +9,20 @@ import SideNav from './components/side-nav'
 import title from './i18n/title'
 import 'highlight.js/styles/color-brewer.css'
 import './demo-styles/index.scss'
-// import './assets/styles/common.scss'
-// import './assets/styles/fonts/style.css'
+import './assets/styles/common.scss'
+import './assets/styles/fonts/style.css'
 import icon from './icon.json'
 // import dayjs from 'dayjs'
 // import 'dayjs/locale/zh-cn'
 // dayjs.locale('zh-cn') // todo: locale based on Doc site lang
 
 import App from './app.vue'
-// import ElementPlus from 'element-plus'
-// import '../packages/theme-chalk/src/index.scss'
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css';
+
 
 import SqkbBdUi from 'sqkb-bd-ui'
+import '../packages/theme-default/src/index.scss'
 
 
 const app = createApp(App)
@@ -37,7 +39,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
 })
-// app.use(ElementPlus)
+app.use(ElementPlus)
 app.use(SqkbBdUi)
 app.use(router)
 router.isReady().then(() => {

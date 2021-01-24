@@ -1,8 +1,8 @@
 <template>
     <div class="sq-hello">
-        Hello `SqHello` !!!
-        <span style="color: red">{{msg}}</span>
-        <span style="font-weight: bold">count : {{count}}</span>
+        <h4 class="sq-hello__title">Hello `SqHello` !!!</h4>
+        <div class="sq-hello__msg">{{msg}}</div>
+        <div style="font-weight: bold">count : {{count}}</div>
     </div>
 </template>
 

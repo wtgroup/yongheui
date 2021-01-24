@@ -1,0 +1,14 @@
+@import './common/var';
+
+.sq-hello {
+  color: $--message-danger-font-color;
+  background: $--background-color-base;
+  padding: 20px;
+  &__title {
+    color: $--message-info-font-color;
+  }
+  &__msg {
+    color: $--message-warning-font-color;
+    margin-bottom: 15px;
+  }
+}
