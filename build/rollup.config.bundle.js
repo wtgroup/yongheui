@@ -14,7 +14,7 @@ const deps = Object.keys(pkg.dependencies)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const vue = require('rollup-plugin-vue')
 
-const projectName = 'sqkb-bd-ui'
+const projectName = 'yongheui'
 
 export default [
   {

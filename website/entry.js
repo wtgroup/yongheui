@@ -21,7 +21,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css';
 
 
-import SqkbBdUi from 'sqkb-bd-ui'
+import yongheui from 'yongheui'
 import '../packages/theme-default/src/index.scss'
 
 
@@ -40,7 +40,7 @@ const router = createRouter({
   routes,
 })
 app.use(ElementPlus)
-app.use(SqkbBdUi)
+app.use(yongheui)
 app.use(router)
 router.isReady().then(() => {
 
@@ -53,7 +53,7 @@ router.isReady().then(() => {
         return
       }
     }
-    document.title = 'SQKB-BD-UI'
+    document.title = 'YongHeUI'
     ga('send', 'event', 'PageView', route.name)
   })
 

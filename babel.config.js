@@ -46,9 +46,9 @@ module.exports = {
         [
           'babel-plugin-module-resolver',
           {
-            root: ['sqkb-bd-ui'],
+            root: ['yongheui'],
             alias: {
-              '@sqkb-bd-ui': 'sqkb-bd-ui/lib',
+              '@yongheui': 'yongheui/lib',
             },
           },
         ],

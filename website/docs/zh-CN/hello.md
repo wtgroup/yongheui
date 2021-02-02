@@ -9,7 +9,7 @@
 :::demo Hello 组件**开启** `World`.
 ```html
 <template>
-    <sq-hello msg="构建自己的组件库是一件酷酷的事情~" />
+    <y-hello msg="构建自己的 Vue 组件库是一件酷酷的事情~" />
 </template>
 ```
 :::

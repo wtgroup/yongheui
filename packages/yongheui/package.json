@@ -1,5 +1,5 @@
 {
-  "name": "sqkb-bd-ui",
+  "name": "yongheui",
   "version": "0.0.1",
   "description": "> TODO: description",
   "author": "sqkb",
@@ -14,6 +14,6 @@
     "url": "https://github.com/element-plus/element-plus/issues"
   },
   "dependencies": {
-    "@sqkb-bd-ui/hello": "^0.0.0"
+    "@yongheui/hello": "^0.0.0"
   }
 }

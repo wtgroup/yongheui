@@ -8,7 +8,7 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
-const projectName = 'sqkb-bd-ui'
+const projectName = 'yongheui'
 
 const libMode = process.env.LIBMODE
 const isFullMode = libMode === 'full'

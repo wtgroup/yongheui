@@ -1,7 +1,7 @@
 {
-  "name": "sq-theme-default",
+  "name": "y-theme-default",
   "version": "2.11.1",
-  "description": "SqBdUi component default theme.",
+  "description": "yongheui component default theme.",
   "main": "lib/index.css",
   "style": "lib/index.css",
   "files": [
@@ -19,8 +19,8 @@
     "element",
     "theme"
   ],
-  "author": "yi.shyang@ele.me",
-  "license": "MIT",
+  "author": "xxx@xxx.com",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/ElementUI/theme-chalk/issues"
   },

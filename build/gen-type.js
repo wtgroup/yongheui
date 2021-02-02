@@ -13,17 +13,17 @@ const outsideImport = /import .* from '..\/(.*?)\/src\/.*/
 // global.d.ts
 fs.copyFileSync(
   path.resolve(__dirname, '../typings/vue-shim.d.ts'),
-  path.resolve(__dirname, '../lib/sqkb-bd-ui.d.ts'),
+  path.resolve(__dirname, '../lib/yongheui.d.ts'),
 )
 // index.d.ts
 const newIndexPath = path.resolve(__dirname, '../lib/index.d.ts')
-fs.copyFileSync(path.resolve(__dirname, '../lib/sqkb-bd-ui/index.d.ts'), newIndexPath)
+fs.copyFileSync(path.resolve(__dirname, '../lib/yongheui/index.d.ts'), newIndexPath)
 const index = fs.readFileSync(newIndexPath)
-const newIndex = index.toString().replace(/@sqkb-bd-ui\//g, './el-').replace('el-utils', 'utils')
+const newIndex = index.toString().replace(/@yongheui\//g, './y-').replace('y-utils', 'utils')
 fs.writeFileSync(newIndexPath, newIndex)
 
 // remove ep
-fs.rmdirSync(path.resolve(__dirname, '../lib/sqkb-bd-ui'), { recursive: true })
+fs.rmdirSync(path.resolve(__dirname, '../lib/yongheui'), { recursive: true })
 
 // remove test-utils
 fs.rmdirSync(path.resolve(__dirname, '../lib/test-utils'), { recursive: true })
@@ -34,15 +34,15 @@ fs.readdirSync(libDirPath).forEach(comp => {
   if (!noElPrefixFile.test(comp)) {
     if (fs.lstatSync(path.resolve(libDirPath, comp)).isDirectory()) {
       // rename
-      const newCompName = `el-${comp}`
+      const newCompName = `y-${comp}`
       fs.renameSync(path.resolve(libDirPath, comp),
         path.resolve(libDirPath, newCompName))
       // re-import
       const imp = fs.readFileSync(path.resolve(__dirname, '../lib', newCompName, 'index.d.ts')).toString()
-      if(outsideImport.test(imp) || imp.includes('@sqkb-bd-ui/')) {
+      if(outsideImport.test(imp) || imp.includes('@yongheui/')) {
         const newImp = imp.replace(outsideImport, (i, c) => {
-          return i.replace(`../${c}`, `../el-${c}`)
-        }).replace('@sqkb-bd-ui/', '../el-').replace('el-utils', 'utils')
+          return i.replace(`../${c}`, `../y-${c}`)
+        }).replace('@yongheui/', '../y-').replace('y-utils', 'utils')
         fs.writeFileSync(path.resolve(__dirname, '../lib', newCompName, 'index.d.ts'), newImp)
       }
     }
@@ -57,12 +57,12 @@ fs.readdirSync(libDirPath).forEach(comp => {
     if (fs.lstatSync(srcPath).isDirectory()) {
       fs.readdir(srcPath, 'utf-8', (err, data) => {
         if (err) return
-        // replace all @sqkb-bd-ui in src/*.d.ts
+        // replace all @yongheui in src/*.d.ts
         data.forEach(f => {
           if (!fs.lstatSync(path.resolve(srcPath, f)).isDirectory()) {
             const imp = fs.readFileSync(path.resolve(srcPath, f)).toString()
-            if (imp.includes('@sqkb-bd-ui/')) {
-              const newImp = imp.replace(/@sqkb-bd-ui\//g, '../../el-')
+            if (imp.includes('@yongheui/')) {
+              const newImp = imp.replace(/@yongheui\//g, '../../y-')
               fs.writeFileSync(path.resolve(srcPath, f), newImp)
             }
           }

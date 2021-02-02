@@ -1,5 +1,5 @@
 {
-  "name": "sqkb-bd-ui",
+  "name": "yongheui",
   "version": "0.0.0",
   "description": "SQKB BigData UI",
   "main": "index.js",
@@ -15,7 +15,8 @@
     "build:utils": "cross-env BABEL_ENV=utils babel packages/utils --extensions .ts --out-dir lib/utils",
     "build:theme": "rimraf packages/theme-default/lib && gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default && rimraf packages/theme-default/lib",
     "website-build": "rimraf website-dist && cross-env NODE_ENV=production webpack --config ./website/webpack.config.js",
-    "website-dev": "webpack-dev-server --config ./website/webpack.config.js"
+    "website-dev": "webpack-dev-server --config ./website/webpack.config.js",
+    "website-dev:play": "cross-env PLAY_ENV=true yarn website-dev"
   },
   "keywords": [
     "Vue",

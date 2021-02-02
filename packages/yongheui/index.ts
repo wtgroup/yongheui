@@ -1,6 +1,6 @@
 // import type { App } from 'vue'
 import { App } from 'vue'
-import SqHello from '@sqkb-bd-ui/hello'
+import YHello from '@yongheui/hello'
 
 // if you encountered problems alike "Can't resolve './version'"
 // please run `yarn bootstrap` first
@@ -17,7 +17,7 @@ const version = version_ // version_ to fix tsc issue
 // }
 
 const components = [
-  SqHello,
+  YHello,
 ]
 
 // const plugins = [
@@ -45,7 +45,7 @@ const install = (app: App, opt): void => {
 
 // import {SqHello} from 'ui库', 按需引入
 export {
-  SqHello,
+  YHello,
   // version,
   // install,
   // locale,

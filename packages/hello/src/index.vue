@@ -1,7 +1,7 @@
 <template>
-    <div class="sq-hello">
-        <h4 class="sq-hello__title">Hello `SqHello` !!!</h4>
-        <div class="sq-hello__msg">{{msg}}</div>
+    <div class="y-hello">
+        <h4 class="y-hello__title">Hello `YHello` !!!</h4>
+        <div class="y-hello__msg">{{msg}}</div>
         <div style="font-weight: bold">count : {{count}}</div>
     </div>
 </template>
@@ -10,7 +10,7 @@
 import {defineComponent, ref} from 'vue'
 
 export default defineComponent({
-  name: 'SqHello',
+  name: 'YHello',
   props: {
     msg: {
       type: String,

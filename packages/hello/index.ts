@@ -1,9 +1,9 @@
 import {App} from 'vue'
 
-import SqHello from './src/index.vue'
+import YHello from './src/index.vue'
 
-SqHello.install = (app: App): void => {
-  app.component(SqHello.name, SqHello)
+YHello.install = (app: App): void => {
+  app.component(YHello.name, YHello)
 }
 
-export default SqHello
+export default YHello
