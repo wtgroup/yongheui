@@ -84,6 +84,7 @@ export default {
   beforeUnmount() {
     this.componentScrollBox.removeEventListener('scroll', this.throttledScrollHandler)
     this.observer.disconnect()
+    this.headerAnchorObserver.disconnect()
   },
   methods: {
     addContentObserver() {
@@ -99,6 +100,30 @@ export default {
         document.querySelector('.content-wrap'),
         { childList: true },
       )
+
+      // 标题前图标隐藏显示 START
+      this.headerAnchorObserver = new MutationObserver((mutationsList, observer) => {
+        // 新换了一批 header-anchor , 再次绑定事件
+        const headerAnchors = document.getElementsByClassName('header-anchor');
+        for (let i = 0; i < headerAnchors.length; i++) {
+          let elem = headerAnchors[i];
+          const p = elem.parentNode;
+          if (p) {
+            p.onmouseover = function () {
+              elem.style.opacity = 1;
+            };
+            p.onmouseout = function () {
+              elem.style.opacity = 0;
+            };
+          }
+        }
+      })
+      this.headerAnchorObserver.observe(
+        // 监听 content-wrap 下 dom 的变化
+        document.querySelector('.content-wrap'),
+        {childList: true},
+      )
+      // 标题前图标隐藏显示 END
     },
     renderAnchorHref() {
       if (/changelog/g.test(location.href)) return
@@ -142,6 +167,16 @@ export default {
   },
 }
 </script>
+<style>
+/*标题前图标隐藏显示 (scoped 无效)*/
+.page-component .header-anchor {
+  opacity: 0;
+  float: left;
+  margin-left: -20px;
+  opacity: 0;
+  cursor: pointer;
+}
+</style>
 <style lang="scss" scoped>
 .page-component {
   width: 1200px;
