@@ -24,11 +24,9 @@
     <el-aside class="page-component__menu" width="200px">
       <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"/>
     </el-aside>
-    <el-main>
-      <div class="page-component__content">
-        <div class="content-wrap">
-          <router-view class="content"/>
-        </div>
+    <el-main class="page-component__content">
+      <div class="content-wrap">
+        <router-view class="content"/>
       </div>
     </el-main>
   </el-container>
@@ -38,7 +36,7 @@
 <script>
 import bus from '../bus'
 import navsData from '../nav.config.json'
-import { throttle } from 'throttle-debounce'
+import {throttle} from 'throttle-debounce'
 
 export default {
   data() {
@@ -89,7 +87,7 @@ export default {
   methods: {
     addContentObserver() {
       this.observer = new MutationObserver((mutationsList, observer) => {
-        for(const mutation of mutationsList) {
+        for (const mutation of mutationsList) {
           if (mutation.type === 'childList') {
             this.renderAnchorHref()
             this.goAnchor()
@@ -98,7 +96,7 @@ export default {
       })
       this.observer.observe(
         document.querySelector('.content-wrap'),
-        { childList: true },
+        {childList: true},
       )
 
       // 标题前图标隐藏显示 START
@@ -188,12 +186,16 @@ export default {
   height: 400px;
   overflow-y: scroll;
 }
+
 .el-container {
   display: flex;
 }
+
 .el-main {
   padding: 10px 40px;
   width: 100%;
+  height: 800px;
+  overflow-y: scroll;
 }
 
 .page-component__scroll {
@@ -205,7 +207,105 @@ export default {
   }
 }
 
+.page-component {
+  box-sizing: border-box;
+  height: 100%;
 
+  &.page-container {
+    padding: 0;
+  }
+
+  .page-component__nav {
+    width: 240px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transition: padding-top .3s;
+
+    ::v-deep( > .el-scrollbar__wrap) {
+      height: 100%;
+      overflow-x: auto;
+    }
+
+    &.is-extended {
+      padding-top: 0;
+    }
+  }
+
+  .side-nav {
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-right: 0;
+
+    & > ul {
+      padding-bottom: 50px;
+    }
+  }
+
+  .page-component__content {
+    /*padding-left: 270px;*/
+    padding-bottom: 100px;
+    box-sizing: border-box;
+  }
+
+  .content-wrap {
+    min-height: 500px;
+  }
+
+  .content {
+    padding-top: 50px;
+
+    ::v-deep(>) {
+      h3 {
+        margin: 55px 0 20px;
+        font-size: 24px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #fff;
+        font-size: 14px;
+        margin-bottom: 45px;
+        line-height: 1.5em;
+
+        strong {
+          font-weight: normal;
+        }
+
+        td, th {
+          border-bottom: 1px solid #dcdfe6;
+          padding: 15px;
+          max-width: 250px;
+        }
+
+        th {
+          text-align: left;
+          white-space: nowrap;
+          color: #909399;
+          font-weight: normal;
+        }
+
+        td {
+          color: #606266;
+        }
+
+        th:first-child, td:first-child {
+          padding-left: 10px;
+        }
+      }
+
+      ul:not(.timeline) {
+        margin: 10px 0;
+        padding: 0 0 0 20px;
+        font-size: 14px;
+        color: #5e6d82;
+        line-height: 2em;
+      }
+    }
+  }
+}
 
 @media (max-width: 768px) {
   .page-component {
@@ -214,17 +314,21 @@ export default {
       position: static;
       margin-top: 0;
     }
+
     .side-nav {
       padding-top: 0;
       padding-left: 50px;
     }
+
     .page-component__content {
       padding-left: 10px;
       padding-right: 10px;
     }
+
     .content {
       padding-top: 0;
     }
+
     .content > table {
       overflow: auto;
       display: block;

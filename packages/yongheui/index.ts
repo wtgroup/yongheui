@@ -1,6 +1,7 @@
 // import type { App } from 'vue'
 import { App } from 'vue'
 import YHello from '@yongheui/hello'
+import YSearchSelect from '@yongheui/search-select'
 
 // if you encountered problems alike "Can't resolve './version'"
 // please run `yarn bootstrap` first
@@ -18,6 +19,7 @@ const version = version_ // version_ to fix tsc issue
 
 const components = [
   YHello,
+  YSearchSelect,
 ]
 
 // const plugins = [
@@ -43,9 +45,10 @@ const install = (app: App, opt): void => {
   // })
 }
 
-// import {SqHello} from 'ui库', 按需引入
+// import {YHello} from 'ui库', 按需引入
 export {
   YHello,
+  YSearchSelect,
   // version,
   // install,
   // locale,

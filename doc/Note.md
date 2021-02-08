@@ -34,3 +34,39 @@ vue、webpack、webpack-cli、webpack-dev-server、@babel/core、babel-loader、
 yarn add vue webpack webpack-cli webpack-dev-server @babel/core babel-loader css-loader html-webpack-plugin vue-loader
  vue-template-compiler
 ```
+
+
+单文件 debug
+```
+yarn bootstrap // 各个子package连接到 node_modules, 否则模块找不到. 新加的package必需此步
+yarn website-dev:play
+//source file: ./website/play/index.vue
+```
+
+
+==Error== Cannot read property '$createElement' of undefined
+> The plugin currently doesn't allow setup returning a render function, as stated in README.
+> https://github.com/vuejs/composition-api/issues/168
+> (所说 plugin 应该是 `babel-plugin-transform-vue-jsx` , 它将vue文件里jsx转成js).
+
+A: 暂还是用 render 返回jsx. setup 用来返回需要用的数据等.
+```
+yarn add babel-plugin-transform-vue-jsx -D -W
+babel 中vue相关plugins增加 'transform-vue-jsx',
+```
+
+*.tsx 中支持setup直接返回jsx.
+
+另一种方案. 但需要额外的 `@vue/composition-api` , _没试过_.
+> In fact it works in this way:
+
+  Make h globally available: import createElement as h from '@vue/composition-api'
+
+  Make sure both setup and the returned function are arrow functions: setup: () => { return () => <div /> }
+
+
+vue3
+```
+import Vue from 'vue' // 无效
+console.log('------------', Vue) // ==> undefined
+```

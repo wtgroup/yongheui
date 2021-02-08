@@ -18,12 +18,14 @@ module.exports = {
     '@babel/proposal-class-properties',
     '@babel/transform-runtime',
     'lodash',
+    ["import", { "libraryName": "ant-design-vue", "libraryDirectory": "es", "style": "css" }] // `style: true` 会加载 less 文件
   ],
   overrides: [
     {
       test: /\.vue$/,
       plugins: [
         '@babel/transform-typescript',
+        'transform-vue-jsx',
       ],
     },
   ],
