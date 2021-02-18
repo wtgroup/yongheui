@@ -183,7 +183,7 @@ export default {
 
 .page-component__menu {
   width: 200px;
-  height: 400px;
+  height: 800px;
   overflow-y: scroll;
 }
 
@@ -194,8 +194,7 @@ export default {
 .el-main {
   padding: 10px 40px;
   width: 100%;
-  height: 800px;
-  overflow-y: scroll;
+  overflow: unset;
 }
 
 .page-component__scroll {

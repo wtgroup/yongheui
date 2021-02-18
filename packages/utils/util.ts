@@ -36,3 +36,13 @@ export function pickValueAdapt(target, ...args) {
     return target
   }
 }
+
+/**
+ * 判空
+ *
+ * null | undefined | ''
+ * @param v
+ */
+export const isEmpty = function (v) {
+  return v == null || (v + '').trim() === '';
+};

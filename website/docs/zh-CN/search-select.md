@@ -160,22 +160,27 @@
 | 参数      | 说明          | 类型      | 可选值                           | 默认值  |
 |---------- |-------------- |---------- |--------------------------------  |-------- |
 | value / v-model | 绑定值 | boolean / string / number | — | — |
+| defaultOptions | 默认选项集 | array / function(fullOptions: array) | true |  |
+| defaultLimit | 默认情况下展示的选项数量 | number | 10 |  |
+| replaceFields | 选项的替换字段, 格式:<br />```{   value:'value', // 字符串对应自定义节点对象的key   text:(item,index,fieldName)=>{}  // 支持函数取值 }``` | object |  | value,text,extra |
+| search | 定制搜索逻辑. `ASelect 'onsearch'` 触发. 可以是获取搜索后选项的逻辑, 也可以直接传入搜索后的选项集. 函数逻辑可以同步, 可以异步(Promise). 缺省, 已有全量选项集中模糊匹配满足条件的最多一页选项集. 若果是函数, 回调参数: `{keyword,fullOptions,currentValue,pager}`, 返回匹配的选项集. | function / array |  |  |
+| searchDelay | 输入关键词后延迟多久执行搜索 | number |  | 500 |
+| enableScrollPage | 是否开启滚动 | boolean |  | true |
 
 
 #### Events
 | 事件名称 | 说明 | 回调参数 |
 |---------|---------|---------|
 | change | 选中值发生变化时触发 | 目前的选中值 |
-| visible-change | 下拉框出现/隐藏时触发 | 出现则为 true，隐藏则为 false |
-| remove-tag | 多选模式下移除tag时触发 | 移除的tag值 |
-| clear | 可清空的单选模式下用户点击清空按钮时触发 | — |
-| blur | 当 input 失去焦点时触发 | (event: Event) |
-| focus | 当 input 获得焦点时触发 | (event: Event) |
+| dropdown | 点击下拉时触发 |  |
 
 
 #### Slots
 |   name  | 说明     |
 |---------|---------|
-|    —    | Option 组件列表 |
-| prefix  | Select 组件头部内容 |
-| empty | 无选项时的列表 |
+|    —    | Option 组件列表(包裹在`a-select-option`内) |
+
+
+
+
+

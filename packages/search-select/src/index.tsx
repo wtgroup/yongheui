@@ -29,7 +29,7 @@ import { Select } from "ant-design-vue";
 import _ from 'lodash'
 import {wrapPromise, pickValueAdapt} from "../../utils/util"
 
-const TAG = "[SearchSelect]"
+const TAG = "[YSearchSelect]"
 
 // 字符串常量
 const StringPool = {
@@ -90,7 +90,10 @@ export default {
     search: {
       type: [Function, Array]
     },
-    /**500ms延迟后执行搜索匹配逻辑
+    /**
+     * 输入关键词后延迟多久执行搜索
+     *
+     * 500ms延迟后执行搜索匹配逻辑
      * 值越小, 卡顿几率越大.
      * */
     searchDelay: {

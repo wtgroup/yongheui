@@ -70,3 +70,11 @@ vue3
 import Vue from 'vue' // 无效
 console.log('------------', Vue) // ==> undefined
 ```
+
+setup 应该先于 methods 和 data .
+setup 中引用 methods 中方法时不行的. 但方法内部通过 `getCurrentInstance.proxy` 引用data的属性应该是可以的, 这是因为真正执行函数时,
+data属性已经在instance proxy实例中可读了.
+
+template 中调用传入的data或prop都是拆解出的value.
+
+

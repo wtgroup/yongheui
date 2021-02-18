@@ -2,6 +2,9 @@
 import { App } from 'vue'
 import YHello from '@yongheui/hello'
 import YSearchSelect from '@yongheui/search-select'
+import {YLightButton} from '@yongheui/button'
+import YDictSelect from '@yongheui/dict-select'
+import YNestCriterion from '@yongheui/nest-criterion'
 
 // if you encountered problems alike "Can't resolve './version'"
 // please run `yarn bootstrap` first
@@ -20,6 +23,9 @@ const version = version_ // version_ to fix tsc issue
 const components = [
   YHello,
   YSearchSelect,
+  YLightButton,
+  YDictSelect,
+  YNestCriterion,
 ]
 
 // const plugins = [
@@ -36,8 +42,13 @@ const install = (app: App, opt): void => {
   // app.config.globalProperties.$ELEMENT = option
   // setConfig(option)
 
+  // app.component 并不会调用 install , 故这里改成这样. 这就要求所有 install 方法需要自己 app.component(Xxx.name, Xxx);
   components.forEach(component => {
-    app.component(component.name, component)
+    if (component.install) {
+      component.install(app);
+    } else {
+      app.component(component.name, component);
+    }
   })
 
   // plugins.forEach(plugin => {
@@ -49,6 +60,9 @@ const install = (app: App, opt): void => {
 export {
   YHello,
   YSearchSelect,
+  YLightButton,
+  YDictSelect,
+  YNestCriterion,
   // version,
   // install,
   // locale,

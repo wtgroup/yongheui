@@ -32,3 +32,9 @@ export default {
   },
 }
 </script>
+<style>
+.main-cnt {
+  height: 100%;
+  overflow: auto;
+}
+</style>
