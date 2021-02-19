@@ -66,7 +66,7 @@ function genInlineComponentText(template, script) {
     script = script
       .replace(/export\s+default/, 'const democomponentExport =')
       .replace(/import ({.*}) from 'vue'/g, (s, s1) => `const ${s1} = Vue`)
-      .replace(/import ({.*}) from 'element-plus'/g, (s, s1) => `const ${s1} = require('element-plus')`)
+      .replace(/import ({.*}) from 'element-plus'/g, (s, s1) => `const ${s1} = require('element-plus')`) // df: 这里替换成了 require 方式, 避开了 'import' and 'export' may only appear at the top level 问题
   } else {
     script = 'const democomponentExport = {}'
   }

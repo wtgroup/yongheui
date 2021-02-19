@@ -214,7 +214,7 @@ export class RuleParser {
   }
 
   static parseIn(id, value, fieldType) {
-    let split = value.split(COMMA_RE);
+    let split = (value+'').split(COMMA_RE);
     if (split.length == 0) {
       return null;
     }
@@ -232,7 +232,7 @@ export class RuleParser {
 
   static parseBetween(id, value, fieldType) {
     // value ',' 切割成左右两个值
-    let split = value.split(COMMA_RE);
+    let split = (value+'').split(COMMA_RE);
     if (split.length != 2) {
       console.error("`between` 要求起止两个值, "+ id + ", " + value);
       return null;
@@ -286,7 +286,7 @@ export class RuleParser {
   }
 
   static parseArrayHasesSqlSegment(hasFuncName, id, value, fieldType) {
-    let subArr = value.split(COMMA_RE);
+    let subArr = (value+'').split(COMMA_RE);
     let subArrStr = null;
     switch (fieldType) {
       case FieldType.ArrayString:

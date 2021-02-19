@@ -50,22 +50,26 @@
 
 ### 基本使用
 
+*Tip: 修改后, 下方实时预览SQL片段(条件语句)*
 
 :::demo
 ```html
 <template>
   <div>
     <y-nest-criterion ref="nc" :criterionOptions="criterionOptions" @change="changeEvent"></y-nest-criterion>
+    <br/>
+    <div style="color: #722ed1; font-weight: bold; font-family: Consolas; font-size: 16px; text-align: center;">{{sql}}</div>
   </div>
 </template>
 
 <script>
 
-// import {RuleParser} from '@yongheui/nest-criterion/src/tool'; // todo 'import' and 'export' may only appear at the top level
+const {RuleParser} = require('@yongheui/nest-criterion/src/tool');
 
 export default {
   data() {
     return {
+      sql: '',
       // 实践中, 此选项由后端配置表查询封装返回
       criterionOptions: [{
         "id": "is_student",
@@ -163,9 +167,9 @@ export default {
   },
   methods: {
     changeEvent(dataSource) {
-      console.log(dataSource);
-      let sql = RuleParser.parseRule(dataSource);
-      console.log('changeEvent::parsed sql ==> ', sql);
+      console.log('changeEvent 回调入参 dataSource :', dataSource);
+      this.sql = RuleParser.parseRule(dataSource);
+      console.log('changeEvent parsed sql ==> ', this.sql);
     },
   }
 

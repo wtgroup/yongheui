@@ -78,3 +78,18 @@ data属性已经在instance proxy实例中可读了.
 template 中调用传入的data或prop都是拆解出的value.
 
 
+**按需引入**
+
+Options can't be an array in babel@7+, but you can add plugins with name to support multiple dependencies.
+
+For Example:
+
+```
+// .babelrc
+"plugins": [
+  ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "antd"],
+  ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
+]
+```
+
+

@@ -147,7 +147,7 @@
   */
 
   import {defineComponent, getCurrentInstance, ref, reactive, toRefs} from 'vue';
-  import {YLightButton} from '@yongheui/button';
+  import YButton from '@yongheui/button';
   import { Select, Button, Tooltip, Input } from "ant-design-vue";
   import {
     QuestionCircleOutlined,
@@ -251,7 +251,14 @@
       'value': {
         immediate: true,
         handler: function (newVal) {
-          this.ivalue = newVal
+          this.ivalue = newVal;
+          // 这是修改'值'的最小单元, 这里改了立即触发校验, 并将结果上报. 避免错误值因为没有keyup触发而误认为是有效值.
+          // 另, nextTick 执行, 否则可能抛 typeError: Cannot read property 'allowRecurse' of null , 原因不详.
+          this.$nextTick(() => {
+            if (newVal != null) {
+              this.validateValue(this.criterion, newVal);
+            }
+          })
         }
       }
     },
@@ -266,12 +273,16 @@
     methods: {
       getInputTip,
       validateValue(crite, e) {
-        console.log(TAG, 'validateValue::', crite, e);
+        // console.log(TAG, 'validateValue::', crite, e);
+        if (e == null) {
+          return;
+        }
+
         let isMulti = crite.operator == OperatorEnum.in;
         let isOk = true;
         let tip = '';
         // let val = crite.value;
-        let val = e.target.value;
+        let val = (e.target) ? e.target.value : e;
         switch (crite.fieldType) {
           case FieldType.Bool:
             // isOk = isMulti ? MultiBoolReg.test(val) : BoolReg.test(val);
@@ -312,7 +323,7 @@
         crite[VALIDATE_MSG] = tip;
         // console.log('ValueInputSelect:validateValue', this.valueValid, crite)
         this.$emit(EMITS.VALIDATED, this.valueValid, crite)
-        this.$forceUpdate()
+        // this.$forceUpdate()
       },
       onSelectChange(e) {
         // console.log(TAG, 'ValueInputSelect::onSelectChange', e);
@@ -390,9 +401,10 @@
       splitValue(val) {
         val += ''
         let res = val ? val.split(/\s*,\s*/) : []
-        if (res.length == 1) {
-          res[1] = res[0]
-        }
+        // Del 当只有一个值时, 这里改了, 导致视图和模型不一致
+        // if (res.length == 1) {
+        //   res[1] = res[0]
+        // }
         return res
       },
       onBeginChange(e, eventType) {
@@ -412,7 +424,7 @@
         // let flag = !this.validateResult.some(e => e == false)
         let tip = this.validateResult.find(e => e);
         crite[VALIDATE_MSG] = tip; // 避开 begin 和 end 校验结果互相干扰, end 校验通过但 begin 没有, end 会将 msg 错误置空
-        console.log(TAG, 'ValueBetweenInputSelect:onBeginValidated', tip, crite)
+        // console.log(TAG, 'ValueBetweenInputSelect:onBeginValidated', tip, crite)
         this.$emit(EMITS.VALIDATED, !tip, crite)
         // this.$forceUpdate()
       },
@@ -423,7 +435,7 @@
         // let flag = !this.validateResult.some(e => e == false)
         let tip = this.validateResult.find(e => e);
         crite[VALIDATE_MSG] = tip; // 避开 begin 和 end 校验结果互相干扰
-        console.log(TAG, 'ValueBetweenInputSelect:onEndValidated', tip, crite)
+        // console.log(TAG, 'ValueBetweenInputSelect:onEndValidated', tip, crite)
         this.$emit(EMITS.VALIDATED, !tip, crite)
         // this.$forceUpdate()
       }
@@ -502,7 +514,7 @@
   export default defineComponent({
     name: "YNestCriterion",
     components: {
-      YLightButton, ValueInputSelect, ValueBetweenInputSelect, TagSelect,
+      YLightButton: YButton.YLightButton, ValueInputSelect, ValueBetweenInputSelect, TagSelect,
       // ASelect: Select,
       // ASelectOption: Select.Option,
       // AButton: Button,
@@ -1098,7 +1110,7 @@
         this.$emit(EMITS.CHANGE, this.dataSource, 'operator')
       },
       onValueChange(val, eventType) {
-        console.log(TAG, "onValueChange::", val, eventType);
+        // console.log(TAG, "onValueChange::", val, eventType);
         this.$emit(EMITS.UPDATE_VALUE, val);
         this.$emit(EMITS.CHANGE, this.dataSource, eventType);
       },
@@ -1205,7 +1217,7 @@
         return map;
       },
       onInputValidated(isValid, crite, validateResult) {
-        console.log(TAG, 'onInputValidated', isValid, crite, validateResult)
+        // console.log(TAG, 'onInputValidated', isValid, crite, validateResult)
         // this.validateResult[this.dataSource.id + ID_PATH_SEP + crite.id] = isValid
         // 先合并进来子的
         // Object.assign(this.validateResult, validateResult)
@@ -1215,7 +1227,7 @@
         this.$forceUpdate()
       },
       onChildGroupValidated(isValid, crite, validateResult) {
-        console.log(TAG, 'onChildGroupValidated', isValid, crite)
+        // console.log(TAG, 'onChildGroupValidated', isValid, crite)
         // 先合并进来子的
         // Object.assign(this.validateResult, validateResult)
         this.validateResult[crite[VID]] = isValid
@@ -1224,7 +1236,7 @@
         this.$forceUpdate()
       },
       onChildChange(e, eventType) {
-        console.log(TAG, 'onChildChange', e, eventType);
+        // console.log(TAG, 'onChildChange', e, eventType);
         this.$emit(EMITS.CHANGE, this.dataSource, eventType)
       },
       // 父给子安排一个编号

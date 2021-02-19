@@ -3,7 +3,7 @@ import {TAG, VID, AND, EMITS, OR} from "./consts";
 import {recursiveExec} from './tool';
 
 export const useCrudCriterion = (vm, {emit}) => {
-  console.log(TAG, 'useCrudCriterion vm', vm);
+  // console.log(TAG, 'useCrudCriterion vm', vm);
 
   const dataSourceValue = vm.dataSourceRef.value;
   const {isValid, isGroup, genVid, getDefaultCriterion, setDefaultValue} = vm;
@@ -14,7 +14,7 @@ export const useCrudCriterion = (vm, {emit}) => {
    * 2) 新增组默认显示一条待配置条件行
    */
   const appendGroup = (g) => {
-    console.log(TAG, 'appendGroup', g);
+    // console.log(TAG, 'appendGroup', g);
     if (!isValid()) {
       return;
     }

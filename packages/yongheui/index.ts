@@ -2,7 +2,8 @@
 import { App } from 'vue'
 import YHello from '@yongheui/hello'
 import YSearchSelect from '@yongheui/search-select'
-import {YLightButton} from '@yongheui/button'
+// import {YLightButton} from '@yongheui/button'
+import YButton from '@yongheui/button'
 import YDictSelect from '@yongheui/dict-select'
 import YNestCriterion from '@yongheui/nest-criterion'
 
@@ -20,10 +21,11 @@ const version = version_ // version_ to fix tsc issue
 //   zIndex: 2000,
 // }
 
+const YLightButton = YButton.YLightButton;
 const components = [
   YHello,
   YSearchSelect,
-  YLightButton,
+  YButton.YLightButton,
   YDictSelect,
   YNestCriterion,
 ]
@@ -60,6 +62,7 @@ const install = (app: App, opt): void => {
 export {
   YHello,
   YSearchSelect,
+  YButton,
   YLightButton,
   YDictSelect,
   YNestCriterion,

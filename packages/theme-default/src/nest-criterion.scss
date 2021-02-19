@@ -77,7 +77,8 @@ $--bg-orange-color: #fdc1be;
 
 .nc-group-title {
   &__text {
-    font-weight: 600;
+    //font-weight: 600;
+    color: $--color-text-secondary;
   }
 }
 
