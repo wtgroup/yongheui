@@ -173,6 +173,14 @@ rules 增加
 
 [package.json 非官方字段集合](https://segmentfault.com/a/1190000016365409)
 
+```json
+"files": [
+    "lib",
+    "es",
+    "packages"
+],
+```
+
 
 **monorepo**
 单一仓库.
@@ -270,3 +278,7 @@ import Button from 'ant-design-vue/lib/button';
 遗留问题:
 yongheui babel 按需引入有问题.
 antd less 文件需要对应 less 配置.
+
+
+**lerna**
+https://juejin.cn/post/6844903911095025678

@@ -1,7 +1,7 @@
 {
   "name": "yongheui",
-  "version": "0.0.0",
-  "description": "Yong He UI",
+  "version": "0.0.1-alpha",
+  "description": "Yonghe UI - My Custom Vue.js 3.0 UI library",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gen": "bash ./scripts/gc.sh",
@@ -23,7 +23,8 @@
     "Vue",
     "Vue3",
     "components",
-    "yonghe"
+    "yonghe",
+    "ui"
   ],
   "author": "dafei",
   "license": "GPL",
@@ -108,6 +109,11 @@
     "packages/*"
   ],
   "main": "lib/index.js",
+  "files": [
+    "lib",
+    "es",
+    "packages"
+  ],
   "module": "lib/index.esm.js",
   "typings": "lib/index.d.ts",
   "browserslist": [
