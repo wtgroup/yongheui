@@ -244,26 +244,34 @@ import {isEmpty} from '@yongheui/utils/util.ts'
 
 ```
 // vue.config.js
-// https://cli.vuejs.org/zh/guide/webpack.html#%E4%BF%AE%E6%94%B9-loader-%E9%80%89%E9%A1%B9
-chainWebpack: config => {
-config.module
-  .rule('antd-less')
-  .test(/ant.*\.less$/)
-  .use('style-loader').loader('style-loader').end()
-  .use('css-loader').loader('css-loader')
-  .tap(options => {
-    // 修改它的选项...
-    options || (options = {})
-    options.sourceMap = true;
-    return options
-  }).end()
-  .use('less-loader').loader('less-loader')
-  .tap(options => {
-    // 修改它的选项...
-    options || (options = {})
-    options.lessOptions = {javascriptEnabled: true};
-    return options
-  }).end()
+module.exports = {
+  // https://cli.vuejs.org/zh/guide/webpack.html#%E4%BF%AE%E6%94%B9-loader-%E9%80%89%E9%A1%B9
+  chainWebpack: config => {
+    config.module
+      // .rule('css')
+      //   .test(/\.css$/)
+      //   .use('style-loader').loader('style-loader').end()
+      //   .use('css-loader').loader('css-loader').end()
+      .rule('antd-less')
+        .test(/\.less$/)
+        .use('less-loader').loader('less-loader')
+        .tap(options => {
+          // 修改它的选项...
+          options || (options = {})
+          options.lessOptions = {javascriptEnabled: true};
+          return options
+        }).end()
+        // .use('css-loader').loader('css-loader')
+        // .tap(options => {
+        //   // 修改它的选项...
+        //   options || (options = {})
+        //   options.sourceMap = true;
+        //   return options
+        // }).end()
+        // .use('style-loader').loader('style-loader').end()
+
+
+  }
 }
 ```
 
@@ -276,8 +284,8 @@ import Button from 'ant-design-vue/lib/button';
 ```
 
 遗留问题:
-yongheui babel 按需引入有问题.
-antd less 文件需要对应 less 配置.
+yongheui babel 按需引入有问题. (OK, 外部新建vue项目, 安装npm上的yongheui, 按需引入正常)
+antd less 文件需要对应 less 配置. (OK, 但, 需要配置, 上文. ? 怎么让我的用户无需配置 ?)
 
 
 **lerna**
