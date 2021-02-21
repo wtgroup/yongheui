@@ -168,7 +168,7 @@ export default {
               optDom = this.$slots.default(item);
             } else {
               if (extra) { // 有额外提示
-                optDom = <span>{text}<span class="option-tip">{extra}</span></span>;
+                optDom = <span>{text}<span class="y-option-tip">{extra}</span></span>;
               } else {
                 optDom = text;
               }
