@@ -7,7 +7,8 @@
  * @date 2019/12/19 10:29
  */
 
-import {Icon} from 'ant-design-vue';
+import Icon from 'ant-design-vue/lib/icon';
+import 'ant-design-vue/lib/icon/style/css';
 const TAG = 'YLightButton';
 
 export default {

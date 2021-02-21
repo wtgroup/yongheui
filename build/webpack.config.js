@@ -8,6 +8,7 @@ const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
+const PRODUCTION = process.env.PRODUCTION;
 const projectName = 'yongheui'
 
 const libMode = process.env.LIBMODE
@@ -41,7 +42,7 @@ const config = {
     publicPath: '/',
     filename: isFullMode ? 'index.full.js' : 'index.js',
     libraryTarget: 'umd',
-    library: 'SqkbBdUi',
+    library: 'yongheui',
     umdNamedDefine: true,
     globalObject: 'typeof self !== \'undefined\' ? self : this',
   },
@@ -55,6 +56,21 @@ const config = {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+      },
+      {
+        test: /ant.*\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /ant.*\.less$/,
+        ...(PRODUCTION ? {
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader?importLoaders=1', /*'postcss-loader',*/ {loader: 'less-loader', options: {lessOptions: {javascriptEnabled: true}}}]
+          })
+        } : {
+          use: ["style-loader", {loader: 'css-loader', options: {sourceMap: true}}, /*"postcss-loader",*/ {loader: 'less-loader', options: {lessOptions: {javascriptEnabled: true}}}]
+        } )
       },
     ],
   },

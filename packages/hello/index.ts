@@ -1,9 +1,13 @@
 import {App} from 'vue'
+import type {SFCWithInstall} from "@yongheui/utils/types";
 
-import YHello from './src/index.vue'
+import Hello from './src/index.vue'
 
-YHello.install = (app: App): void => {
-  app.component(YHello.name, YHello)
+Hello.install = (app: App): void => {
+  app.component(Hello.name, Hello)
 }
 
-export default YHello
+// @ts-ignore
+const _Hello: SFCWithInstall<typeof Hello> = Hello
+
+export default _Hello

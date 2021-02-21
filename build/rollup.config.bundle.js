@@ -6,13 +6,15 @@
 // import vue from 'rollup-plugin-vue'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import path from 'path'
-// import commonjs from '@rollup/plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
 import typescript from 'rollup-plugin-typescript2'
 import pkg from '../package.json'
+// import babel from 'rollup-plugin-babel';
 const deps = Object.keys(pkg.dependencies)
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const vue = require('rollup-plugin-vue')
+const babel = require('rollup-plugin-babel')
 
 const projectName = 'yongheui'
 
@@ -25,13 +27,24 @@ export default [
     },
     plugins: [
       terser(),
-      nodeResolve(),
-      // commonjs(),
       vue({
         target: 'browser',
         css: false,
         exposeFilename: false,
       }),
+      nodeResolve(),
+      babel({
+        // presets: ["@vue/babel-preset-jsx"],
+        // babelHelpers: 'bundled',
+        extensions: ['.js', '.jsx', '.es6', '.es', '.mjs', ".ts", ".tsx",],
+        runtimeHelpers: true,
+        // exclude: /node_modules/,
+        // exclude: 'node_modules/**',
+      }),
+      // commonjs({
+      //   exclude: /.*\.vue$/,
+      // }),
+      commonjs(),
       typescript({
         tsconfigOverride: {
           'include': [
@@ -43,7 +56,7 @@ export default [
             'packages/**/__tests__/*',
           ],
         },
-        abortOnError: false,
+        abortOnError: true,
       }),
     ],
     external(id) {

@@ -16,7 +16,7 @@
   "dependencies": {
     "@yongheui/hello": "^0.0.0",
     "@yongheui/search-select": "^0.0.0",
-    "@yongheui/button": "^0.0.0",
+    "@yongheui/light-button": "^0.0.0",
     "@yongheui/dict-select": "^0.0.0",
     "@yongheui/nest-criterion": "^0.0.0"
   }

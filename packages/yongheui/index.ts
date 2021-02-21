@@ -3,7 +3,7 @@ import { App } from 'vue'
 import YHello from '@yongheui/hello'
 import YSearchSelect from '@yongheui/search-select'
 // import {YLightButton} from '@yongheui/button'
-import YButton from '@yongheui/button'
+import YLightButton from '@yongheui/light-button'
 import YDictSelect from '@yongheui/dict-select'
 import YNestCriterion from '@yongheui/nest-criterion'
 
@@ -21,11 +21,10 @@ const version = version_ // version_ to fix tsc issue
 //   zIndex: 2000,
 // }
 
-const YLightButton = YButton.YLightButton;
 const components = [
   YHello,
   YSearchSelect,
-  YButton.YLightButton,
+  YLightButton,
   YDictSelect,
   YNestCriterion,
 ]
@@ -46,9 +45,12 @@ const install = (app: App, opt): void => {
 
   // app.component 并不会调用 install , 故这里改成这样. 这就要求所有 install 方法需要自己 app.component(Xxx.name, Xxx);
   components.forEach(component => {
+    // @ts-ignore
     if (component.install) {
+      // @ts-ignore
       component.install(app);
     } else {
+      // @ts-ignore
       app.component(component.name, component);
     }
   })
@@ -62,7 +64,6 @@ const install = (app: App, opt): void => {
 export {
   YHello,
   YSearchSelect,
-  YButton,
   YLightButton,
   YDictSelect,
   YNestCriterion,

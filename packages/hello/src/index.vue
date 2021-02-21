@@ -40,12 +40,12 @@ export default defineComponent({
   },
   // render 方法中使用 jsx OK
   render() {
-    const props = this.$props;
+    const {msg} = this.$props;
     // const count = 0;
     return (
       <div class="y-hello">
         <h4 class="y-hello__title">Hello `YHello` !!!</h4>
-        <div class="y-hello__msg">{props.msg}</div>
+        <div class="y-hello__msg">{msg}</div>
         <div style="font-weight: bold">count : {this.count}</div>
       </div>
     )

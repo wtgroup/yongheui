@@ -20,10 +20,8 @@ import App from './app.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css';
 
-
-import yongheui from 'yongheui'
+import Yongheui from 'yongheui'
 import '../packages/theme-default/src/index.scss'
-
 
 const app = createApp(App)
 
@@ -40,7 +38,7 @@ const router = createRouter({
   routes,
 })
 app.use(ElementPlus)
-app.use(yongheui)
+app.use(Yongheui)
 app.use(router)
 router.isReady().then(() => {
 

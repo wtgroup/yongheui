@@ -50,6 +50,17 @@ const config = {
         ],
       },
       {
+        test: /ant.*\.less$/,
+        ...(process.env.PRODUCTION ? {
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader?importLoaders=1', /*'postcss-loader',*/ {loader: 'less-loader', options: {lessOptions: {javascriptEnabled: true}}}]
+          })
+        } : {
+          use: ["style-loader", {loader: 'css-loader', options: {sourceMap: true}}, /*"postcss-loader",*/ {loader: 'less-loader', options: {lessOptions: {javascriptEnabled: true}}}]
+        } )
+      },
+      {
         test: /\.(svg|otf|ttf|woff2?|eot|gif|png|jpe?g)(\?\S*)?$/,
         loader: 'url-loader',
         // todo: 这种写法有待调整

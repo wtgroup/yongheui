@@ -1,9 +1,13 @@
 import {App} from 'vue'
+import type {SFCWithInstall} from "@yongheui/utils/types";
+import DictSelect from './src/index'
 
-import YDictSelect from './src/index.tsx'
-
-YDictSelect.install = (app: App): void => {
-  app.component(YDictSelect.name, YDictSelect)
+// @ts-ignore
+DictSelect.install = (app: App): void => {
+  app.component(DictSelect.name, DictSelect)
 }
 
-export default YDictSelect
+// @ts-ignore
+const _DictSelect: SFCWithInstall<typeof DictSelect> = DictSelect;
+
+export default _DictSelect

@@ -1,9 +1,13 @@
 import {App} from 'vue'
+import type {SFCWithInstall} from "@yongheui/utils/types";
+import SearchSelect from './src/index'
 
-import YSearchSelect from './src/index.tsx'
-
-YSearchSelect.install = (app: App): void => {
-  app.component(YSearchSelect.name, YSearchSelect)
+// @ts-ignore
+SearchSelect.install = (app: App): void => {
+  app.component(SearchSelect.name, SearchSelect)
 }
 
-export default YSearchSelect
+// @ts-ignore
+const _SearchSelect: SFCWithInstall<typeof SearchSelect> = SearchSelect
+
+export default _SearchSelect

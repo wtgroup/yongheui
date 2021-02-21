@@ -1,7 +1,7 @@
 {
-  "name": "@yongheui/button",
+  "name": "@yongheui/light-button",
   "version": "0.0.0",
-  "main": "dist/index.js",
+  "main": "index.ts",
   "license": "GPL",
   "peerDependencies": {
     "vue": "^3.0.5"

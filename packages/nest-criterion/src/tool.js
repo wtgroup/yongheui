@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {AND, OR, OperatorEnum, FieldType} from "./consts";
 import {COMMA_RE} from '@yongheui/utils/constants';
 import {isEmpty} from "@yongheui/utils/util";

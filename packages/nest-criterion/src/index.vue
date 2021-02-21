@@ -1,7 +1,7 @@
 <!-- 可嵌套编辑sql条件 -- dafei 2019/12/18 10:52 -->
 <template>
   <div class="nc-group">
-    <!--组标题-->
+    <!--Group Title-->
     <div class="nc-group-head-line">
       <span class="nc-group-title">
         <!--<a-icon @click="dataSource.fold = !dataSource.fold" class="nc-plus-minus-icon"
@@ -145,10 +145,18 @@
   * - 升级为 vue3
   * - name -> title
   */
+  import {defineComponent, getCurrentInstance, ref, reactive} from 'vue';
+  import YLightButton from '@yongheui/light-button';
+  // import { Select, Button, Tooltip, Input } from "ant-design-vue";
+  import Select from 'ant-design-vue/lib/select'
+  import 'ant-design-vue/lib/select/style/css'
+  import Button from 'ant-design-vue/lib/button'
+  import 'ant-design-vue/lib/button/style/css'
+  import Tooltip from 'ant-design-vue/lib/tooltip'
+  import 'ant-design-vue/lib/tooltip/style/css'
+  import Input from 'ant-design-vue/lib/input'
+  import 'ant-design-vue/lib/input/style/css'
 
-  import {defineComponent, getCurrentInstance, ref, reactive, toRefs} from 'vue';
-  import YButton from '@yongheui/button';
-  import { Select, Button, Tooltip, Input } from "ant-design-vue";
   import {
     QuestionCircleOutlined,
     SmileOutlined,
@@ -157,7 +165,7 @@
     CloseOutlined,
     PlusCircleOutlined,
   } from '@ant-design/icons-vue';
-  import {useCrudCriterion} from "./useCrudCriterion";
+  import {useCrudCriterion} from "./useCrudCriterion.ts";
 
   import {
     TAG, ID_PATH_SEP, COMMA, VID, AND, OR, VALIDATE_MSG, ROOT,
@@ -168,9 +176,9 @@
     BoolReg,
     MultiBoolReg,
     EMITS,
-  } from './consts'
-  import {isGroup, recursiveExec} from './tool';
-  import {isEmpty} from '@yongheui/utils/util';
+  } from './consts.ts'
+  import {isGroup} from './tool';
+  import {isEmpty} from '@yongheui/utils/util.ts';
 
   const nextId = function () {
     var current_id = 0;
@@ -235,6 +243,11 @@
 
   const ValueInputSelect = {
     name: 'ValueInputSelect',
+    components: {
+      ASelect: Select,
+      ASelectOption: Select.Option,
+      AInput: Input,
+    },
     props: {
       criterion: {
         type: Object,
@@ -455,6 +468,10 @@
 
   const TagSelect = {
     name: 'TagSelect',
+    components: {
+      ASelect: Select,
+      ASelectOption: Select.Option,
+    },
     props: {
       criterion: {
         type: Object,
@@ -514,12 +531,12 @@
   export default defineComponent({
     name: "YNestCriterion",
     components: {
-      YLightButton: YButton.YLightButton, ValueInputSelect, ValueBetweenInputSelect, TagSelect,
-      // ASelect: Select,
-      // ASelectOption: Select.Option,
-      // AButton: Button,
-      // ATooltip: Tooltip,
-      // AInput: Input,
+      YLightButton, ValueInputSelect, ValueBetweenInputSelect, TagSelect,
+      ASelect: Select,
+      ASelectOption: Select.Option,
+      AButton: Button,
+      ATooltip: Tooltip,
+      AInput: Input,
       QuestionCircleOutlined,
       SmileOutlined,
       PlusOutlined,

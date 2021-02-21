@@ -13,11 +13,11 @@ function compile() {
     .pipe(sass.sync())
     .pipe(autoprefixer({ cascade: false }))
     .pipe(cssmin())
-    // .pipe(rename(function (path) {
-    //   if(!noElPrefixFile.test(path.basename)) {
-    //     path.basename = `el-${path.basename}`
-    //   }
-    // }))
+    .pipe(rename(function (path) {
+      if(!noElPrefixFile.test(path.basename)) {
+        path.basename = `y-${path.basename}`
+      }
+    }))
     .pipe(dest('./lib'))
 }
 

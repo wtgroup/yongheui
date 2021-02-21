@@ -25,9 +25,12 @@
  */
 
 // babel-plugin-import 会帮助你加载 JS 和 CSS
-import { Select } from "ant-design-vue";
+// import { Select } from "ant-design-vue";
+import Select from 'ant-design-vue/lib/select'
+import 'ant-design-vue/lib/select/style/css'
 import _ from 'lodash'
-import {wrapPromise, pickValueAdapt} from "../../utils/util"
+import {wrapPromise, pickValueAdapt} from "@yongheui/utils/util"
+import {CHANGE_EVENT, UPDATE_VALUE_EVENT} from '@yongheui/utils/constants'
 
 const TAG = "[YSearchSelect]"
 
@@ -176,11 +179,11 @@ export default {
   created() {
   },
   emits: {
-    change: (args) => {
+    [CHANGE_EVENT as string]: (args) => {
       // console.log(TAG, 'emits change:', args);
       return true;
     },
-    'update:value': (args) => {
+    [UPDATE_VALUE_EVENT as string]: (args) => {
       // console.log(TAG, 'emits update:value:', args);
       return true;
     },
@@ -188,8 +191,8 @@ export default {
   },
   setup(props, {emit}) {
     const triggerChange = (...args: any[]) => {
-      emit('update:value', ...args);
-      emit('change', ...args);
+      emit(CHANGE_EVENT, ...args);
+      emit(UPDATE_VALUE_EVENT, ...args);
     };
     return {
       triggerChange,

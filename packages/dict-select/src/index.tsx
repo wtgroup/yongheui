@@ -19,7 +19,8 @@
  */
 
 import {wrapPromise} from "@yongheui/utils/util";
-import { Select } from "ant-design-vue";
+import Select from "ant-design-vue/lib/select";
+import 'ant-design-vue/lib/select/style/css'
 
 const TAG = '[YDictSelect]';
 
