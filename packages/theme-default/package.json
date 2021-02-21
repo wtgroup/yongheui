@@ -1,6 +1,6 @@
 {
   "name": "y-theme-default",
-  "version": "2.11.1",
+  "version": "0.0.0",
   "description": "yongheui component default theme.",
   "main": "lib/index.css",
   "style": "lib/index.css",
@@ -11,20 +11,12 @@
   "scripts": {
     "build": "gulp build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ElementUI/theme-chalk.git"
-  },
   "keywords": [
     "element",
     "theme"
   ],
   "author": "xxx@xxx.com",
   "license": "GPL",
-  "bugs": {
-    "url": "https://github.com/ElementUI/theme-chalk/issues"
-  },
-  "homepage": "https://github.com/ElementUI/theme-chalk#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
