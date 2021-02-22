@@ -19,7 +19,7 @@ const config = {
     : path.resolve(__dirname, './entry.js'),
   output: {
     path: path.resolve(__dirname, '../website-dist'),
-    publicPath: '/',
+    publicPath: isProd ? '/yongheui-site/' : '/', // yongheui-site gitee 站点库名
     filename: isProd ? '[name].[hash].js' : '[name].js',
   },
   module: {

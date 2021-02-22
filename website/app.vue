@@ -16,7 +16,9 @@ export default {
   name: 'App',
 
   computed: {
-
+    isComponent() {
+      return /^component-/.test(this.$route.name || '')
+    },
   },
 
   watch: {

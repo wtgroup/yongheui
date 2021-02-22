@@ -20,7 +20,7 @@
     </div>
   </el-scrollbar>-->
 
-  <el-container class="page-component">
+  <el-container class="page-container page-component">
     <el-aside class="page-component__menu" width="200px">
       <side-nav :data="navsData[lang]" :base="`/${ lang }/component`"/>
     </el-aside>
@@ -257,7 +257,6 @@ export default {
 
     ::v-deep(>) {
       h3 {
-        margin: 55px 0 20px;
         font-size: 24px;
       }
 
