@@ -287,6 +287,16 @@ import Button from 'ant-design-vue/lib/button';
 yongheui babel 按需引入有问题. (OK, 外部新建vue项目, 安装npm上的yongheui, 按需引入正常)
 antd less 文件需要对应 less 配置. (OK, 但, 需要配置, 上文. ? 怎么让我的用户无需配置 ?)
 
+yongheui 未定义应该是 website 项目的影响.
+ERROR in ./website/play.js
+Module not found: Error: Can't resolve 'yongheui/lib/theme-default/index.css' in 'E:\Work\Node\Publish\yongheui\website'
+
 
 **lerna**
 https://juejin.cn/post/6844903911095025678
+
+
+**打包用 private , 发布用 public**
+error Workspaces can only be enabled in private projects.
+
+期待更好的方式.

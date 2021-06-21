@@ -3,7 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from './route.config'
 import demoBlock from './components/demo-block'
 // import MainFooter from './components/footer'
-// import MainHeader from './components/header'
+import MainHeader from './components/header'
 import SideNav from './components/side-nav'
 // import FooterNav from './components/footer-nav'
 import title from './i18n/title'
@@ -29,7 +29,7 @@ app.config.globalProperties.$icon = icon
 
 app.component('DemoBlock', demoBlock)
 // app.component('MainFooter', MainFooter)
-// app.component('MainHeader', MainHeader)
+app.component('MainHeader', MainHeader)
 app.component('SideNav', SideNav)
 // app.component('FooterNav', FooterNav)
 

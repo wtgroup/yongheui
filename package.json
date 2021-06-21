@@ -104,7 +104,7 @@
     "lodash": "^4.17.20",
     "mitt": "^2.1.0"
   },
-  "private": false,
+  "private": true,
   "workspaces": [
     "packages/*"
   ],

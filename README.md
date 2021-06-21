@@ -1,6 +1,9 @@
-![Yong He Gong](./assets/1.jpg)
 
-<p align="center" style="font-size: large; font-weight: bold">Yonghe UI - My Custom Vue.js 3.0 UI library</p>
+<p align="center">
+  <img width="300px" src="./assets/1.jpg">
+</p>
+
+<p align="center" style="font-size: 22px; font-weight: 600;">Yonghe UI - My Custom Vue.js 3.0 UI library</p>
 
 * 💪 Vue 3.0 Composition API
 * 🔥 Written in TypeScript

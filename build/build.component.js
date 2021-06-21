@@ -32,7 +32,9 @@ const runBuild = async () => {
     const inputOptions = {
       input: path.resolve(__dirname, `../packages/${name.split('@yongheui/')[1]}/index.ts`),
       plugins: [
-        nodeResolve(),
+        nodeResolve({
+          extensions: ['.css', '.less', '.mjs', '.js', '.json', '.node']
+        }),
         css(),
         vue({
           target: 'browser',
@@ -61,7 +63,11 @@ const runBuild = async () => {
         }),
       ],
       external(id) {
-        // /*not antd*/
+        // /* not antd ..style/css
+        //  * 组件也打包的话, 出现循环引用警告, 但貌似不影响使用.
+        //  * 仅打包 css 时, 效果是 Select 依然导入(如原样显示 `import Select from 'ant-design-vue/lib/select';`), 但 css 打包进来了.
+        //  */
+        // // if ( /^@?ant-design.+style\/css.*/.test(id) ) {
         // if ( /^@?ant-design/.test(id) ) {
         //   return false;
         // }
