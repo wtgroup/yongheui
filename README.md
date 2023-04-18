@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="300px" src="./assets/1.jpg">
+  <img width="100%" height="180px" src="./assets/1.jpg">
 </p>
 
 <p align="center" style="font-size: 22px; font-weight: 600;">Yonghe UI - My Custom Vue.js 3.0 UI library</p>
