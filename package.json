@@ -28,6 +28,10 @@
   ],
   "author": "dafei",
   "license": "GPL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wtgroup/yongheui"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
     "@babel/core": "^7.12.10",

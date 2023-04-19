@@ -55,7 +55,12 @@ yarn gen {component name}
 lerna publish // maybe, 忘了
 ```
 
+### 文档站点发布
 
+```
+website-dist -> E:\Sync\Work\Node\Publish\yongheui-site
+提交到 git page 仓库
+```
 
 ==Error== Cannot read property '$createElement' of undefined
 > The plugin currently doesn't allow setup returning a render function, as stated in README.
